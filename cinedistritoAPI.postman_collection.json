@@ -1,0 +1,1509 @@
+{
+	"info": {
+		"_postman_id": "a36df57f-c837-4bd7-85a9-1964c5c1f260",
+		"name": "cinedistritoAPI",
+		"description": "Esta coleccion desribe todas las formas en las que se puede acceder a los endpoints de cindedistrito",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Create tokens",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"drjfrost\",\n    \"password\": \"drjfrost\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/token/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"token",
+								""
+							]
+						},
+						"description": "This request creates employees"
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Access Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU5NzY0ODgwOCwianRpIjoiMTlmNmEwYTNiZTNjNGRiZDlhZDNhMDk0ODE1ZjllZWMiLCJ1c2VyX2lkIjoxfQ.ffpx8fYycupTnKPrz-wKCgh0-mxruLkE4nJt1lxqzfw\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/token/refresh/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"token",
+								"refresh",
+								""
+							]
+						},
+						"description": "This request creates a new access token with the refresh token"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Employees",
+			"item": [
+				{
+					"name": "Create Employee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"jorge\",\n    \"last_name\": \"lucero\",\n    \"username\": \"georgie\",\n    \"password\": \"georgie\",\n    \"email\": \"georgie@mail.com\",\n    \"phone\": \"+573202769935\",\n    \"identification\": \"1015482413\",\n    \"contract\": {\n        \"salary\": \"1500000\",\n        \"join_date\": \"2020-02-01T00:00:00\",\n        \"end_date\": \"2021-02-01T23:59:59\",\n        \"position\": 2\n    }\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Employees/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Employees",
+								""
+							]
+						},
+						"description": "This request creates employees"
+					},
+					"response": []
+				},
+				{
+					"name": "List Employees (SuperUser)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NTYyNzA4LCJqdGkiOiJhY2RkNDdhMDNkNjg0NTMwOWEyNDQxYTMxYTg4ZDVhNiIsInVzZXJfaWQiOjF9.nSvW2M3-k-otRsKHi6IfO8GX8cViC0Aq25m1bJg4c9I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Employees/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Employees",
+								""
+							]
+						},
+						"description": "This request gets all employees, needs SuperUser Token"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employee Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NTYzOTUzLCJqdGkiOiJiZDAxMjNmMDk1OTU0NjkyYjJjZTU2NDZjNmMxYWEzOCIsInVzZXJfaWQiOjJ9.63PtWd3Q6KJxrocvmr7f3_J3rIcHroPhU4ONRsk4XvM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Employees/2/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Employees",
+								"2",
+								""
+							]
+						},
+						"description": "This request gets the information of the employee id"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Employee Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NTYzOTUzLCJqdGkiOiJiZDAxMjNmMDk1OTU0NjkyYjJjZTU2NDZjNmMxYWEzOCIsInVzZXJfaWQiOjJ9.63PtWd3Q6KJxrocvmr7f3_J3rIcHroPhU4ONRsk4XvM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"jorge\",\n    \"last_name\": \"lucero\",\n    \"username\": \"georgie\",\n    \"password\": \"georgie\",\n    \"email\": \"georgie@mail.com\",\n    \"phone\": \"+573202769935\",\n    \"identification\": \"1015482413\",\n    \"contract\": {\n        \"salary\": \"1500000\",\n        \"join_date\": \"2020-02-01T00:00:00\",\n        \"end_date\": \"2021-02-01T23:59:59\",\n        \"position\": 2\n    }\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Employees/2/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Employees",
+								"2",
+								""
+							]
+						},
+						"description": "This request updates the information of the employee id"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "Create Clients",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"miguel\",\n    \"last_name\": \"lopez\",\n    \"username\": \"milopmen\",\n    \"password\": \"milopmen\",\n    \"email\": \"milopmen@mail.com\",\n    \"phone\": \"+573202769935\",\n    \"identification\": \"1015482414\",\n    \"client_profile\": {\n        \"address\": \"Cll 70C #55-25\"\n    }\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Clients/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Clients",
+								""
+							]
+						},
+						"description": "This request creates clients"
+					},
+					"response": []
+				},
+				{
+					"name": "List Clients",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NTY0NjUyLCJqdGkiOiIxN2U4MmE2N2E2YzA0MzAwOGRhMDNjN2Q0MWEzY2Y5NiIsInVzZXJfaWQiOjJ9.fW9K4b_INqCibikv3VDBTfmu3UzbrAcPAJqos4QodJ0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Clients/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Clients",
+								""
+							]
+						},
+						"description": "This request gets all customers, needs Staff/Employee Token"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NTY0NjgyLCJqdGkiOiI0ZjA5MDVlNmVjNGQ0ZmNiYmI4Zjk4OTE4NGQyMGE5MSIsInVzZXJfaWQiOjN9.2HcOVt7ov-xiAeOCTbWIdcvpWwP5GvEyGEHI1d5RBO8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Clients/3/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Clients",
+								"3",
+								""
+							]
+						},
+						"description": "This request gets the information of the client id"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Client Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NTYzOTUzLCJqdGkiOiJiZDAxMjNmMDk1OTU0NjkyYjJjZTU2NDZjNmMxYWEzOCIsInVzZXJfaWQiOjJ9.63PtWd3Q6KJxrocvmr7f3_J3rIcHroPhU4ONRsk4XvM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"miguel\",\n    \"last_name\": \"lopez\",\n    \"username\": \"milopmen\",\n    \"password\": \"milopmen\",\n    \"email\": \"milopmen@mail.com\",\n    \"phone\": \"+573202769935\",\n    \"identification\": \"1015482414\",\n    \"client_profile\": {\n        \"address\": \"Cll 70C #55-25\"\n    }\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Clients/3/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Clients",
+								"3",
+								""
+							]
+						},
+						"description": "This request updates the information of the client id"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Headquarters",
+			"item": [
+				{
+					"name": "Create Headquarters",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NjEyNjUwLCJqdGkiOiJkNzE4ZTU1M2RhZDE0YzRiYjQ4MmQ4ZGY4YzAyODY3YSIsInVzZXJfaWQiOjF9.f7IU4EtGcl_5s9O0SxRaVwNNm9pq465X-pcpledvYeU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Santa Fe\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								""
+							]
+						},
+						"description": "This request creates headquarters"
+					},
+					"response": []
+				},
+				{
+					"name": "List Headquarters",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								""
+							]
+						},
+						"description": "This request gets all headquarters"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Headquarter",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/2/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								"2",
+								""
+							]
+						},
+						"description": "This request gets a specific headquarter"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Headquarter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NTYzOTUzLCJqdGkiOiJiZDAxMjNmMDk1OTU0NjkyYjJjZTU2NDZjNmMxYWEzOCIsInVzZXJfaWQiOjJ9.63PtWd3Q6KJxrocvmr7f3_J3rIcHroPhU4ONRsk4XvM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Abcd cinema\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/3/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								"3",
+								""
+							]
+						},
+						"description": "This request updates the information of the headquarter id"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Headuqarter Rooms",
+			"item": [
+				{
+					"name": "Create Room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NjEzMzI1LCJqdGkiOiJiMjM5YmIzN2VhYWM0YjIwYmRiZWQ2MmNlZWU3OTZmNiIsInVzZXJfaWQiOjF9.EpI7E_uSMi9kYBVwwaOz8MJ6uT71S51ElvR4SSIW7rI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Sala 3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/1/Rooms/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								"1",
+								"Rooms",
+								""
+							]
+						},
+						"description": "This request creates rooms according to specified headquarter"
+					},
+					"response": []
+				},
+				{
+					"name": "List Headquarter Rooms",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/1/Rooms/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								"1",
+								"Rooms",
+								""
+							]
+						},
+						"description": "This request gets all rooms of specified headquarter"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Headquarter Room",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/1/Rooms/3/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								"1",
+								"Rooms",
+								"3",
+								""
+							]
+						},
+						"description": "This request gets a specific room of a headquarter"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NjEzNzQ0LCJqdGkiOiJiYmU2NGQyMzYwMWE0NWNiYjQ4ZWMxZDNkYzg5MmZmNyIsInVzZXJfaWQiOjF9.PSOXJSWBrLPIMBkrqlezQdzmLrVaLSyI1ZCcYLRhmDQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Sala 3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/1/Rooms/3/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								"1",
+								"Rooms",
+								"3",
+								""
+							]
+						},
+						"description": "This request updates the information of the room id"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Headuqarter Rooms Spots",
+			"item": [
+				{
+					"name": "Create Spot",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NjEzOTY3LCJqdGkiOiI2MDVhNmQ3NWZiODA0YTM0YTExZDQyNWJhYjk1NTg4OCIsInVzZXJfaWQiOjF9.9EHFwoi1YwyqVBFi0iqIMHx5iDuiBKPYIgo01xmG20A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"A1\",\n    \"row\": 1,\n    \"col\": 1,\n    \"value\": \"10000\",\n    \"spot_type\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/1/Rooms/3/Spots/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								"1",
+								"Rooms",
+								"3",
+								"Spots",
+								""
+							]
+						},
+						"description": "This request creates spots according to specified headquarter and room given"
+					},
+					"response": []
+				},
+				{
+					"name": "List  Room Spots",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/1/Rooms/2/Spots/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								"1",
+								"Rooms",
+								"2",
+								"Spots",
+								""
+							]
+						},
+						"description": "This request gets all spots of specified room"
+					},
+					"response": []
+				},
+				{
+					"name": "get Room Spot",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/1/Rooms/2/Spots/12/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								"1",
+								"Rooms",
+								"2",
+								"Spots",
+								"12",
+								""
+							]
+						},
+						"description": "This request gets a specific spot based on the given id and the specified room"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NjE0NTcwLCJqdGkiOiJkMmZmNWU3Yzk5MzM0MmFiOTVmY2UwMzVhYjNhMDhiOSIsInVzZXJfaWQiOjF9.vM6U064l--wka5ZySSqNXLJaCkbad0jjAC0_JLMUNIA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": 7000.0,\n    \"spot_type\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/1/Rooms/3/Spots/21/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								"1",
+								"Rooms",
+								"3",
+								"Spots",
+								"21",
+								""
+							]
+						},
+						"description": "This request updates the information of the room id"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Headquarters Shows",
+			"item": [
+				{
+					"name": "Create Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NjE2OTk1LCJqdGkiOiJkN2U2NTExMmEyNmI0ZjU0OGJlZTZjYTZjZTI3OGZjOCIsInVzZXJfaWQiOjF9.-YIDyGjLTDimZFRETZC51e15yISzPkmDY4VjiFylHyM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"shreck 3 (noche extrema)\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/1/Shows/1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								"1",
+								"Shows",
+								"1",
+								""
+							]
+						},
+						"description": "This request creates a show"
+					},
+					"response": []
+				},
+				{
+					"name": "List Shows",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/1/Shows/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								"1",
+								"Shows",
+								""
+							]
+						},
+						"description": "This request lists all shows of a headquarter"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/1/Shows/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								"1",
+								"Shows",
+								""
+							]
+						},
+						"description": "This request gets a specific show of a headquarter"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NjE2Njc2LCJqdGkiOiJjZTBhMDMyMzU4MWQ0ODE0YWRkN2Q3MTRlODIzOTQ2YiIsInVzZXJfaWQiOjF9.4jgohYrKiIIgf_pgA0D2Pcgsy4AGHELycNVRzqStBnk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"shreck 3 (noche extrema)\",\n    \"start\": \"2020-09-11T22:00:00\",\n    \"end\": \"2020-09-12T00:00:00\",\n    \"scoring\": 4,\n    \"room\": 2,\n    \"movie\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Headquarters/1/Shows/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Headquarters",
+								"1",
+								"Shows",
+								""
+							]
+						},
+						"description": "This request creates a show"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Movie Genre",
+			"item": [
+				{
+					"name": "List Movie Genres",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/MovieGenres/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"MovieGenres",
+								""
+							]
+						},
+						"description": "This request lists all movie genres available on the API"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Movie Genre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/MovieGenres/1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"MovieGenres",
+								"1",
+								""
+							]
+						},
+						"description": "This request gets a specific movie Genre available on the API"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Movies",
+			"item": [
+				{
+					"name": "Create movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NjE1MTMxLCJqdGkiOiJhNTU0ZmY4YjUwNzk0NTNhYTljNjQ0NzdjZjJiNmVmZSIsInVzZXJfaWQiOjF9.x4wm_CVT4Ly8Z5-eyHMo_MPdmknkXusyV4nKg0LMGLQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"schreck 3\",\n    \"duration\": \"01:45:00\",\n    \"genre\": [1, 4, 6] \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Movies/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Movies",
+								""
+							]
+						},
+						"description": "This request creates a movie"
+					},
+					"response": []
+				},
+				{
+					"name": "List Movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Movies/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Movies",
+								""
+							]
+						},
+						"description": "This request lists all movies available on the API"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Movies/1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Movies",
+								"1",
+								""
+							]
+						},
+						"description": "This request gets a specific movie available on the API"
+					},
+					"response": []
+				},
+				{
+					"name": "Update movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NjE1MTMxLCJqdGkiOiJhNTU0ZmY4YjUwNzk0NTNhYTljNjQ0NzdjZjJiNmVmZSIsInVzZXJfaWQiOjF9.x4wm_CVT4Ly8Z5-eyHMo_MPdmknkXusyV4nKg0LMGLQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"schreck 3\",\n    \"duration\": \"01:45:00\",\n    \"genre\": [1, 4, 6] \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Movies/1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Movies",
+								"1",
+								""
+							]
+						},
+						"description": "This request creates a movie"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Positions",
+			"item": [
+				{
+					"name": "List Positions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Positions/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Positions",
+								""
+							]
+						},
+						"description": "This request list all positions available on the API"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Position",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Positions/1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Positions",
+								"1",
+								""
+							]
+						},
+						"description": "This requestgets a specific available on the API"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Bills",
+			"item": [
+				{
+					"name": "Create Reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NjE4NjA2LCJqdGkiOiI2MTk1OWRlYWMyZmY0YjRkOTg4ZGJjOTU0NzU1MzFkOCIsInVzZXJfaWQiOjJ9.M7EIId9fSLiWx5HcBxxioo2twj2Z_zpaxxpHjiH7Jnc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bill_type\": 1,\n    \"payment_method\": 1,\n    \"reservation\": {\n        \"description\": \"reservation for Shreck 3\",\n        \"spots\": [11, 12, 13],\n        \"show\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Clients/2/Billings/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Clients",
+								"2",
+								"Billings",
+								""
+							]
+						},
+						"description": "This request creates a reservation along with a bill"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NjE4NjA2LCJqdGkiOiI2MTk1OWRlYWMyZmY0YjRkOTg4ZGJjOTU0NzU1MzFkOCIsInVzZXJfaWQiOjJ9.M7EIId9fSLiWx5HcBxxioo2twj2Z_zpaxxpHjiH7Jnc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bill_type\": 1,\n    \"payment_method\": 1,\n    \"reservation\": {\n        \"description\": \"reservation for Shreck 3\",\n        \"spots\": [11, 12, 13],\n        \"show\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/Clients/2/Billings/1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Clients",
+								"2",
+								"Billings",
+								"1",
+								""
+							]
+						},
+						"description": "This request updates a bill"
+					},
+					"response": []
+				},
+				{
+					"name": "List Reservations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NjE4OTI0LCJqdGkiOiI1MDU0ZThmYThiNzA0NzNjYjJhOWViNDQ3NDRlODU2NSIsInVzZXJfaWQiOjJ9.8lbN3F0pMA5w5CYmzuiQHCjF1q4Nnhpzf0fvEvpO9Gk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Clients/2/Billings/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Clients",
+								"2",
+								"Billings",
+								""
+							]
+						},
+						"description": "This request gets all reservations of a given customer"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reservation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTk3NjE5MzEyLCJqdGkiOiI5NjhkNWRlMjMyNmM0Y2YyOWU3YjJkYjVkYzRkNDhhMCIsInVzZXJfaWQiOjJ9.6LnNYz4hw3l3utqmzisIpGwcvOkdjoG3ehmqT91bZSw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/Clients/2/Billings/1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"Clients",
+								"2",
+								"Billings",
+								"1",
+								""
+							]
+						},
+						"description": "This request gets a specific reservation of a client"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Bill Types",
+			"item": [
+				{
+					"name": "List Bill Types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/BillTypes/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"BillTypes",
+								""
+							]
+						},
+						"description": "This request lists all bill types available on the API"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Bill Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/BillTypes/1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"BillTypes",
+								"1",
+								""
+							]
+						},
+						"description": "This request gets a specific bill type available on the API"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Payment Methods",
+			"item": [
+				{
+					"name": "List Payment methods",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/PaymentMethods/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"PaymentMethods",
+								""
+							]
+						},
+						"description": "This request lists all payment methods available on the API"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Payment method",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/PaymentMethods/1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"PaymentMethods",
+								"1",
+								""
+							]
+						},
+						"description": "This request gets a specific payment method available on the API"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Reservation States",
+			"item": [
+				{
+					"name": "List Reservation States",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/ResStates/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"ResStates",
+								""
+							]
+						},
+						"description": "This request lists all reservation states available on the API"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reservation State",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/ResStates/1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"ResStates",
+								"1",
+								""
+							]
+						},
+						"description": "This request gets a specific reservation state available on the API"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "SpotTypes",
+			"item": [
+				{
+					"name": "List Spot Types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/SpotTypes/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"SpotTypes",
+								""
+							]
+						},
+						"description": "This request lists all spot types available on the API"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Spot Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/SpotTypes/1/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"SpotTypes",
+								"1",
+								""
+							]
+						},
+						"description": "This request gets a specific spot type available on the API"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

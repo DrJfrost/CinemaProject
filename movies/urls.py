@@ -1,13 +1,14 @@
 
 from django.urls import path, include
 from rest_framework_nested import routers
-from movies.views import HeadquarterViewset, SpotTypeViewset, MovieGenreViewset, RoomViewset, SpotViewset, ShowViewset
+from movies.views import HeadquarterViewset, SpotTypeViewset, MovieGenreViewset, RoomViewset, SpotViewset, ShowViewset, MovieViewset
 
 router = routers.SimpleRouter()
 
 router.register(r"Headquarters", HeadquarterViewset)
 router.register(r"SpotTypes", SpotTypeViewset)
 router.register(r"MovieGenres", MovieGenreViewset)
+router.register(r"Movies", MovieViewset)
 
 headquarter_router = routers.NestedSimpleRouter(router, r'Headquarters', lookup='headquarter')
 headquarter_router.register(r'Rooms', RoomViewset, basename='headquarters-rooms')

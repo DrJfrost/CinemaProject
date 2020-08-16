@@ -1,0 +1,65 @@
+[
+    {
+        "model": "movies.MovieGenre",
+        "pk": "1",
+        "fields":{
+            "name": "action"
+        }
+    },
+    {
+        "model": "movies.MovieGenre",
+        "pk": "2",
+        "fields":{
+            "name": "comedy"
+        }
+    },
+    {
+        "model": "movies.MovieGenre",
+        "pk": "3",
+        "fields":{
+            "name": "drama"
+        }
+    },
+    {
+        "model": "movies.MovieGenre",
+        "pk": "4",
+        "fields":{
+            "name": "fantasy"
+        }
+    },
+    {
+        "model": "movies.MovieGenre",
+        "pk": "5",
+        "fields":{
+            "name": "horror"
+        }
+    },
+    {
+        "model": "movies.MovieGenre",
+        "pk": "6",
+        "fields":{
+            "name": "mistery"
+        }
+    },
+    {
+        "model": "movies.MovieGenre",
+        "pk": "7",
+        "fields":{
+            "name":"romance"
+        }
+    },
+    {
+        "model": "movies.MovieGenre",
+        "pk": "8",
+        "fields":{
+            "name":"thriller"
+        }
+    },
+    {
+        "model": "movies.MovieGenre",
+        "pk": "9",
+        "fields":{
+            "name":"western"
+        }
+    }
+]

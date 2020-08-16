@@ -1,16 +1,14 @@
 from django.shortcuts import render
 from reservations.models import Bill, BillType, PaymentMethod, ResState
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated, AllowAny, SAFE_METHODS
 from users.permissions import IsClientOwner
-from reservations.serializers import BillSerializer, BillTypeSerializer, PaymentMethodSerializer, ResStateSerializer
+from reservations.serializers import BillSerializer, BillInfoSerializer, BillTypeSerializer, PaymentMethodSerializer, ResStateSerializer
 
 
 
 # Create your views here.
 class BillViewset(viewsets.ModelViewSet):
-
-    serializer_class = BillSerializer
 
     def get_permissions(self):
 
@@ -40,6 +38,11 @@ class BillViewset(viewsets.ModelViewSet):
         #set's client id according to the one sent on url
         self.request.data["user"] = self.kwargs["client_pk"]
         return super(BillViewset, self).create(request, *args, **kwargs)
+    
+    def get_serializer_class(self):
+        if not self.request.method in SAFE_METHODS:
+            return BillSerializer
+        return BillInfoSerializer
 
 
 

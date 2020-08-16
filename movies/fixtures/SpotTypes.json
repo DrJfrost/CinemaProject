@@ -1,0 +1,16 @@
+[
+    {
+        "model": "movies.SpotType",
+        "pk": "1",
+        "fields":{
+            "name": "basic"
+        }
+    },
+    {
+        "model": "movies.SpotType",
+        "pk": "2",
+        "fields":{
+            "name": "premium"
+        }
+    }
+]

@@ -8,13 +8,12 @@ class Headquarter(models.Model):
 
 class MovieGenre(models.Model):
 
-    Name = models.CharField('name of the movie genre', max_length=30)
+    name = models.CharField('name of the movie genre', max_length=30)
 
 
 class SpotType(models.Model):
 
     name = models.CharField('name of the spot type', max_length=100)
-    value = models.FloatField()
 
 class Room(models.Model):
 

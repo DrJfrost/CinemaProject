@@ -1,5 +1,6 @@
 from reservations.models import BillType, PaymentMethod, ResState, Reservation, Bill
 from movies.models import Spot, Show
+from movies.serializers import SpotInfoSerializer
 from users.models import User
 from rest_framework import serializers
 
@@ -23,31 +24,52 @@ class ResStateSerializer(serializers.ModelSerializer):
         model = ResState
         fields = ['id', 'name']
 
+class ReservationInfoSerializer(serializers.ModelSerializer):
 
-class ReservationSerializer(serializers.ModelSerializer):
-
-    state = serializers.PrimaryKeyRelatedField(read_only=True)
-    spots = serializers.PrimaryKeyRelatedField(required=True, queryset=Spot.objects.all(), many=True)
-    show = serializers.PrimaryKeyRelatedField(required=True, queryset=Show.objects.all())
+    state = ResStateSerializer()
+    spots = SpotInfoSerializer(many=True)
 
     class Meta:
         model = Reservation
         fields = ['id', 'description', 'scoring', 'state', 'spots', 'show']
-        depth = 1
 
+class ReservationSerializer(serializers.ModelSerializer):
 
-class BillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reservation
+        fields = ['id', 'description', 'scoring', 'state', 'spots', 'show']
+    
+    def validate(self, data):
 
-    reservation = ReservationSerializer()
-    user = serializers.PrimaryKeyRelatedField(required=True, queryset=User.objects.filter(is_staff=False))
-    bill_type = serializers.PrimaryKeyRelatedField(required=True, queryset=BillType.objects.all())
-    payment_method = serializers.PrimaryKeyRelatedField(required=True, queryset=PaymentMethod.objects.all())
+        if ('show' in data and not 'spots' in data) or (not 'show' in data and 'spots' in data):
+            raise serializers.ValidationError('you need to provide spots and show if you want to update them')
+
+        show = data["show"]
+        for spot in data["spots"]:
+            print((str)(spot.room)+' '+(str)(show.room))
+            if spot.room != show.room:
+                raise serializers.ValidationError({'spots': 'the spot "'+(str)(spot.id)+'"does not belong to the room of the show that is being reservated make sure that you choose a spot of the same room where the show is taking place'})
+        return data
+
+class BillInfoSerializer(serializers.ModelSerializer):
+
+    payment_method = PaymentMethodSerializer()
+    bill_type = BillTypeSerializer()
+    reservation = ReservationInfoSerializer()
 
     class Meta:
         model = Bill
         fields = ['id', 'value', 'user', 'bill_type', 'payment_method', 'reservation']
         read_only_fields = ['value']
-        depth = 1
+
+class BillSerializer(serializers.ModelSerializer):
+
+    reservation = ReservationSerializer()
+
+    class Meta:
+        model = Bill
+        fields = ['id', 'value', 'user', 'bill_type', 'payment_method', 'reservation']
+        read_only_fields = ['value']
 
     def create(self, validated_data):
 
@@ -60,11 +82,12 @@ class BillSerializer(serializers.ModelSerializer):
         for spot in spots:
             value += spot.value
 
-        bill = Bill.objects.create(value=value, **validated_data)
-
+        #creation of reservation
         reservation = Reservation.objects.create(**reservation_data)
-        reservation.spots.add(**spots)
+        reservation.spots.add(*spots)
         reservation.save()
+
+        bill = Bill.objects.create(value=value, reservation=reservation, **validated_data)
 
 
         bill.save()

@@ -27,7 +27,6 @@ class Reservation(models.Model):
 class Bill(models.Model):
     
     value = models.FloatField()
-    saved_score = models.FloatField()
     
     #foreign keys
     user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name='client owner of the bill')
