@@ -27,6 +27,7 @@ class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
         fields = ['id', 'description', 'scoring', 'state', 'spots', 'show']
+        depth = 1
 
 
 class BillSerializer(serializers.ModelSerializer):
@@ -36,6 +37,7 @@ class BillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bill
         fields = ['id', 'value', 'user', 'bill_type', 'payment_method', 'reservation']
+        depth = 1
 
     def create(self, validated_data):
 
