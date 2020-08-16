@@ -1,14 +1,14 @@
 
 from django.urls import path, include
 from rest_framework_nested import routers
-from reservations.views import BillViewset, BillTypeViewset, PaymentMethodViewset
+from reservations.views import BillViewset, BillTypeViewset, PaymentMethodViewset, ResStateViewSet
 from users.urls import router as routerUsers
 
 router = routers.SimpleRouter()
 
 router.register(r"BillTypes", BillTypeViewset)
 router.register(r"PaymentMethods", PaymentMethodViewset)
-
+router.register(r"ResStates", ResStateViewSet)
 
 client_router = routers.NestedSimpleRouter(routerUsers, r'Clients', lookup='client')
 client_router.register(r'Billings', BillViewset, basename='client-billing')

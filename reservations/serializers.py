@@ -1,4 +1,7 @@
 from reservations.models import BillType, PaymentMethod, ResState, Reservation, Bill
+from movies.models import Spot, Show
+from movies.serializers import SpotInfoSerializer
+from users.models import User
 from rest_framework import serializers
 
 class BillTypeSerializer(serializers.ModelSerializer):
@@ -21,14 +24,43 @@ class ResStateSerializer(serializers.ModelSerializer):
         model = ResState
         fields = ['id', 'name']
 
+class ReservationInfoSerializer(serializers.ModelSerializer):
+
+    state = ResStateSerializer()
+    spots = SpotInfoSerializer(many=True)
+
+    class Meta:
+        model = Reservation
+        fields = ['id', 'description', 'scoring', 'state', 'spots', 'show']
 
 class ReservationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reservation
         fields = ['id', 'description', 'scoring', 'state', 'spots', 'show']
-        depth = 1
+    
+    def validate(self, data):
 
+        if ('show' in data and not 'spots' in data) or (not 'show' in data and 'spots' in data):
+            raise serializers.ValidationError('you need to provide spots and show if you want to update them')
+
+        show = data["show"]
+        for spot in data["spots"]:
+            print((str)(spot.room)+' '+(str)(show.room))
+            if spot.room != show.room:
+                raise serializers.ValidationError({'spots': 'the spot "'+(str)(spot.id)+'"does not belong to the room of the show that is being reservated make sure that you choose a spot of the same room where the show is taking place'})
+        return data
+
+class BillInfoSerializer(serializers.ModelSerializer):
+
+    payment_method = PaymentMethodSerializer()
+    bill_type = BillTypeSerializer()
+    reservation = ReservationInfoSerializer()
+
+    class Meta:
+        model = Bill
+        fields = ['id', 'value', 'user', 'bill_type', 'payment_method', 'reservation']
+        read_only_fields = ['value']
 
 class BillSerializer(serializers.ModelSerializer):
 
@@ -37,7 +69,7 @@ class BillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bill
         fields = ['id', 'value', 'user', 'bill_type', 'payment_method', 'reservation']
-        depth = 1
+        read_only_fields = ['value']
 
     def create(self, validated_data):
 
@@ -45,11 +77,17 @@ class BillSerializer(serializers.ModelSerializer):
         reservation_data = validated_data.pop('reservation')
         spots = reservation_data.pop('spots')
 
-        bill = Bill.objects.create(**validated_data)
+        #calculation of total reservation value according to selected spots
+        value = 0
+        for spot in spots:
+            value += spot.value
 
+        #creation of reservation
         reservation = Reservation.objects.create(**reservation_data)
-        reservation.spots.add(**spots)
+        reservation.spots.add(*spots)
         reservation.save()
+
+        bill = Bill.objects.create(value=value, reservation=reservation, **validated_data)
 
 
         bill.save()

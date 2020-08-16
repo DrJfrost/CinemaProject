@@ -13,7 +13,7 @@ class User(AbstractUser):
     phone = PhoneNumberField()
     
     #foreign keys
-    identification = models.OneToOneField(Identification, on_delete=models.PROTECT, verbose_name='identification of a user')
+    identification = models.OneToOneField(Identification, on_delete=models.PROTECT, verbose_name='identification of a user', null=False)
 
 class Position(models.Model):
 
@@ -24,7 +24,7 @@ class Contract(models.Model):
 
     salary = models.FloatField()
     join_date = models.DateTimeField('joid date of the employee')
-    end_date = models.DateField('ending date of employee contract')
+    end_date = models.DateTimeField('ending date of employee contract')
     is_active = models.BooleanField('state of the contract', default=True)
     
     #foreign keys
