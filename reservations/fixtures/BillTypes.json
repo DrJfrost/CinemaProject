@@ -1,0 +1,16 @@
+[
+    {
+        "model": "reservations.BillType",
+        "pk": "1",
+        "fields":{
+            "name":"partial payment"
+        }
+    },
+    {
+        "model": "reservations.BillType",
+        "pk": "2",
+        "fields":{
+            "name":"full payment"
+        }
+    }
+]

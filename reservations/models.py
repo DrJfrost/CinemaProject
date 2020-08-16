@@ -19,8 +19,8 @@ class Reservation(models.Model):
     scoring = models.PositiveIntegerField(default=0)
 
     #foreign keys
-    state = models.ForeignKey(ResState, on_delete=models.PROTECT, verbose_name='state of the reservation')
-    spots = models.ManyToManyField(Spot, on_delete=models.PROTECT, verbose_name='spots that were booked')
+    state = models.ForeignKey(ResState, on_delete=models.PROTECT, default=1, verbose_name='state of the reservation')
+    spots = models.ManyToManyField(Spot, verbose_name='spots that were booked')
     show = models.ForeignKey(Show, on_delete=models.PROTECT, verbose_name='movie that was booked')
 
 
@@ -31,6 +31,7 @@ class Bill(models.Model):
     
     #foreign keys
     user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name='client owner of the bill')
+    bill_type = models.ForeignKey(BillType, on_delete=models.PROTECT, verbose_name='billing type')
     payment_method = models.ForeignKey(PaymentMethod, on_delete=models.PROTECT, verbose_name='payment method of the bill')
     reservation = models.ForeignKey(Reservation, on_delete=models.PROTECT, verbose_name='reservation of the bill', related_name='reservation')
 # Create your models here.

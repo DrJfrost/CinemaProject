@@ -1,4 +1,6 @@
 from reservations.models import BillType, PaymentMethod, ResState, Reservation, Bill
+from movies.models import Spot, Show
+from users.models import User
 from rest_framework import serializers
 
 class BillTypeSerializer(serializers.ModelSerializer):
@@ -24,6 +26,10 @@ class ResStateSerializer(serializers.ModelSerializer):
 
 class ReservationSerializer(serializers.ModelSerializer):
 
+    state = serializers.PrimaryKeyRelatedField(read_only=True)
+    spots = serializers.PrimaryKeyRelatedField(required=True, queryset=Spot.objects.all(), many=True)
+    show = serializers.PrimaryKeyRelatedField(required=True, queryset=Show.objects.all())
+
     class Meta:
         model = Reservation
         fields = ['id', 'description', 'scoring', 'state', 'spots', 'show']
@@ -33,10 +39,14 @@ class ReservationSerializer(serializers.ModelSerializer):
 class BillSerializer(serializers.ModelSerializer):
 
     reservation = ReservationSerializer()
+    user = serializers.PrimaryKeyRelatedField(required=True, queryset=User.objects.filter(is_staff=False))
+    bill_type = serializers.PrimaryKeyRelatedField(required=True, queryset=BillType.objects.all())
+    payment_method = serializers.PrimaryKeyRelatedField(required=True, queryset=PaymentMethod.objects.all())
 
     class Meta:
         model = Bill
         fields = ['id', 'value', 'user', 'bill_type', 'payment_method', 'reservation']
+        read_only_fields = ['value']
         depth = 1
 
     def create(self, validated_data):
@@ -45,7 +55,12 @@ class BillSerializer(serializers.ModelSerializer):
         reservation_data = validated_data.pop('reservation')
         spots = reservation_data.pop('spots')
 
-        bill = Bill.objects.create(**validated_data)
+        #calculation of total reservation value according to selected spots
+        value = 0
+        for spot in spots:
+            value += spot.value
+
+        bill = Bill.objects.create(value=value, **validated_data)
 
         reservation = Reservation.objects.create(**reservation_data)
         reservation.spots.add(**spots)

@@ -40,9 +40,17 @@ INSTALLED_APPS = [
 
     #third party apps
     'phonenumber_field',
+    'corsheaders',
+
+    #local apps
+    'users',
+    'movies',
+    'reservations',
+
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -130,8 +138,11 @@ AUTH_USER_MODEL = 'users.User'
 
 #restframework settings
 REST_FRAMEWORK = {
-    
+
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+# cors policy whitelist
+CORS_ORIGIN_ALLOW_ALL = True
