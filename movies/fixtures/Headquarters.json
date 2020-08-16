@@ -1,0 +1,9 @@
+[
+    {
+        "model": "movies.Headquarter",
+        "pk": "1",
+        "fields":{
+            "name": "Titan Plaza"
+        }
+    }
+]

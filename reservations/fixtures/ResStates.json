@@ -1,0 +1,16 @@
+[
+    {
+        "model": "reservations.ResState",
+        "pk": "1",
+        "fields":{
+            "name": "pending payment"
+        }
+    },
+    {
+        "model": "reservations.ResState",
+        "pk": "2",
+        "fields":{
+            "name": "payment completed"
+        }
+    }
+]

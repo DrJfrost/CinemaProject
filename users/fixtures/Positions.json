@@ -1,0 +1,16 @@
+[
+    {
+        "model": "users.Position",
+        "pk": "1",
+        "fields":{
+            "name": "manager"
+        }
+    },
+    {
+        "model": "users.Position",
+        "pk": "2",
+        "fields":{
+            "name": "manager assistant"
+        }
+    }
+]

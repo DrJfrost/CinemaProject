@@ -1,0 +1,242 @@
+[
+    {
+        "model": "movies.Spot",
+        "pk": "1",
+        "fields":{
+            "name": "basic",
+            "row": 1,
+            "col": 1,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 1
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "2",
+        "fields":{
+            "name": "basic",
+            "row": 1,
+            "col": 2,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 1
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "3",
+        "fields":{
+            "name": "basic",
+            "row": 1,
+            "col": 3,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 1
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "4",
+        "fields":{
+            "name": "basic",
+            "row": 1,
+            "col": 4,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 1
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "5",
+        "fields":{
+            "name": "basic",
+            "row": 2,
+            "col": 1,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 1
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "6",
+        "fields":{
+            "name": "basic",
+            "row": 2,
+            "col": 2,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 1
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "7",
+        "fields":{
+            "name": "basic",
+            "row": 2,
+            "col": 3,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 1
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "8",
+        "fields":{
+            "name": "basic",
+            "row": 2,
+            "col": 4,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 1
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "9",
+        "fields":{
+            "name": "premium",
+            "row": 3,
+            "col": 2,
+            "value": 10000,
+            "spot_type": 2,
+            "room": 1
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "10",
+        "fields":{
+            "name": "premium",
+            "row": 3,
+            "col": 3,
+            "value": 10000,
+            "spot_type": 2,
+            "room": 1
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "11",
+        "fields":{
+            "name": "basic",
+            "row": 1,
+            "col": 1,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 2
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "12",
+        "fields":{
+            "name": "basic",
+            "row": 1,
+            "col": 2,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 2
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "13",
+        "fields":{
+            "name": "basic",
+            "row": 1,
+            "col": 3,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 2
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "14",
+        "fields":{
+            "name": "basic",
+            "row": 1,
+            "col": 4,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 2
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "15",
+        "fields":{
+            "name": "basic",
+            "row": 2,
+            "col": 1,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 2
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "16",
+        "fields":{
+            "name": "basic",
+            "row": 2,
+            "col": 2,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 2
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "17",
+        "fields":{
+            "name": "basic",
+            "row": 2,
+            "col": 3,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 2
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "18",
+        "fields":{
+            "name": "basic",
+            "row": 2,
+            "col": 4,
+            "value": 7000,
+            "spot_type": 1,
+            "room": 2
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "19",
+        "fields":{
+            "name": "premium",
+            "row": 3,
+            "col": 2,
+            "value": 10000,
+            "spot_type": 2,
+            "room": 2
+        }
+    },
+    {
+        "model": "movies.Spot",
+        "pk": "20",
+        "fields":{
+            "name": "premium",
+            "row": 3,
+            "col": 3,
+            "value": 10000,
+            "spot_type": 2,
+            "room": 2
+        }
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "model": "movies.Room",
+        "pk": "1",
+        "fields":{
+            "name": "sala 1",
+            "headquarter": 1
+        }
+    },
+    {
+        "model": "movies.Room",
+        "pk": "2",
+        "fields":{
+            "name": "sala 2",
+            "headquarter": 1
+        }
+    }
+]

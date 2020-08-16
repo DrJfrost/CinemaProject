@@ -1,0 +1,16 @@
+[
+    {
+        "model": "reservations.PaymentMethod",
+        "pk": "1",
+        "fields":{
+            "name": "cash"
+        }
+    },
+    {
+        "model": "reservations.PaymentMethod",
+        "pk": "2",
+        "fields":{
+            "name": "online"
+        }
+    }
+]
