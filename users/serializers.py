@@ -1,4 +1,4 @@
-from users.models import User, Contract, ClientProfile
+from users.models import User, Contract, ClientProfile, Identification
 from rest_framework import serializers
 
 class ContractSerializer(serializers.ModelSerializer):
@@ -20,11 +20,16 @@ class EmployeeSerializer(serializers.ModelSerializer):
                 'write_only': True
             }
         }
+        depth = 1
 
     def create(self, validated_data):
         
         contract_data = validated_data.pop('contract')
-        user = User.objects.create(**validated_data)
+        identification_data = validated_data.pop('identification')
+        
+        identification = Identification.objects.create(id=identification_data)
+
+        user = User.objects.create(identification=identification, **validated_data)
         
         #hash password instead of saving it in plain text
         user.set_password(user.password)
@@ -84,11 +89,16 @@ class ClientSerializer(serializers.ModelSerializer):
                 'write_only': True
             }
         }
+        depth = 1
     
     def create(self, validated_data):
         
         profile_data = validated_data.pop('client_profile')
-        user = User.objects.create(**validated_data)
+        identification_data = validated_data.pop('identification')
+        
+        identification = Identification.objects.create(id=identification_data)
+
+        user = User.objects.create(identification=identification, **validated_data)
         
         #hash password instead of saving it in plain text
         user.set_password(user.password)
