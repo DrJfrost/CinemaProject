@@ -23,7 +23,8 @@ class RoomSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Room
-        field = ['id', 'name', 'headquarter']
+        fields = ['id', 'name', 'headquarter', 'spots']
+        read_only_fiels = ['spots']
         depth = 1
 
 class MovieSerializer(serializers.ModelSerializer):
