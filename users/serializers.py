@@ -1,11 +1,18 @@
-from users.models import User, Contract, ClientProfile, Identification
+from users.models import User, Contract, ClientProfile, Identification, Position
 from rest_framework import serializers
+
+class PositionSerializer(serializers.ModelSerializer):
+
+    class meta:
+        model = Position
+        fields = ['id', 'name']
 
 class ContractSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Contract
         fields = ['id', 'salary', 'join_date', 'end_date', 'is_active', 'position']
+        depth = 1
 
 class EmployeeSerializer(serializers.ModelSerializer):
 

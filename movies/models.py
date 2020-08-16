@@ -52,4 +52,4 @@ class Spot(models.Model):
 
     #foreign keys
     spot_type = models.ForeignKey(SpotType, on_delete=models.PROTECT, verbose_name='spot type')
-    room = models.ForeignKey(Room, on_delete=models.PROTECT, verbose_name='room of the spot')
+    room = models.ForeignKey(Room, on_delete=models.PROTECT, verbose_name='room of the spot', related_name='spots')
