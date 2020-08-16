@@ -12,7 +12,7 @@ class SpotViewset(viewsets.ModelViewSet):
     serializer_class = SpotSerializer
 
     def get_queryset(self):
-        queryset = Spot.objects.filter(room=self.kwargs['toom_pk'])
+        queryset = Spot.objects.filter(room=self.kwargs['room_pk'])
         return queryset
 
 class RoomViewset(viewsets.ModelViewSet):
@@ -40,7 +40,7 @@ class MovieGenreViewset(viewsets.ReadOnlyModelViewSet):
     serializer_class = MovieGenreSerializer
     queryset = MovieGenre.objects.all()
 
-class ShowViewser(viewsets.ModelViewSet):
+class ShowViewset(viewsets.ModelViewSet):
 
     serializer_class = ShowSerializer
 
