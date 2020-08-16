@@ -33,7 +33,7 @@ class Contract(models.Model):
 
 
 class ClientProfile(models.Model):
-    score = models.FloatField()
+
     address = models.TextField()
 
     #foreign keys

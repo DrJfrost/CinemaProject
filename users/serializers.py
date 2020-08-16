@@ -5,7 +5,7 @@ class ContractSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Contract
-        fields = ['salary', 'join_date', 'end_date', 'is_active', 'position']
+        fields = ['id', 'salary', 'join_date', 'end_date', 'is_active', 'position']
 
 class EmployeeSerializer(serializers.ModelSerializer):
 
@@ -13,7 +13,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'password', 'email', 'phone', 'last_login', 'date_joined', 'is_staff', 'is_active', 'identification', 'contract']
+        fields = ['id', 'first_name', 'last_name', 'username', 'password', 'email', 'phone', 'last_login', 'date_joined', 'is_staff', 'is_active', 'identification', 'contract']
         read_only_fields = ['is_active', 'is_staff', 'date_joined', 'last_login']
         extra_kwargs = {
             'password': {
@@ -29,7 +29,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
         #hash password instead of saving it in plain text
         user.set_password(user.password)
 
-        contract = Contract.objects.create(user=user, **contract_data)
+        contract = Contract.objects.create(user=user, is_staff=True, **contract_data)
         contract.save()
         
         user.save()
@@ -69,7 +69,7 @@ class ClientProfileSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = ClientProfile
-        fields = ['score', 'address']
+        fields = ['id', 'address']
 
 class ClientSerializer(serializers.ModelSerializer):
 
@@ -77,7 +77,7 @@ class ClientSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'password', 'email', 'phone', 'last_login', 'date_joined', 'is_staff', 'is_active', 'identification', 'client_profile']
+        fields = ['id', 'first_name', 'last_name', 'username', 'password', 'email', 'phone', 'last_login', 'date_joined', 'is_staff', 'is_active', 'identification', 'client_profile']
         read_only_fields = ['is_active', 'is_staff', 'date_joined', 'last_login']
         extra_kwargs = {
             'password': {
@@ -117,7 +117,6 @@ class ClientSerializer(serializers.ModelSerializer):
         
         #update profile data
         if profile is not None:
-            profile.score = profile_data.get('score', profile.score)
             profile.address = profile_data.get('address', profile.address)
 
             profile.save()
