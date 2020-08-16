@@ -31,4 +31,7 @@ DATABASES = {
 8. finally run the server on terminal :)
 `python manage.py runserver`
 
+---
+**Note:** All of the endpoint usage documentation is on the postman file `cinedistritoAPI.postman_collection.json` make sure to import it as a collection on postman
+
 
