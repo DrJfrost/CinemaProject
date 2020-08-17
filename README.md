@@ -8,7 +8,7 @@ A project for Software Engineering program, Manager of cinema tickets
 `source venv/bin/activate`
 3. go in the terminal to the repository folder and install dependencies
 `pip install -r requirements.txt`
-4. configure the Database on the `settings.py` file according to your systems DB config
+4. configure the Database on the `settings.py` file according to your system's DB config
 
 ```python
 DATABASES = {
